@@ -1,9 +1,9 @@
 class TreeNode {
-  constructor(val) {
-    this.val = val;
-    this.left = null;
-    this.right = null;
-  }
+    constructor(val) {
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
 }
 
 class BST {
@@ -13,7 +13,7 @@ class BST {
     }
 
     // Insert a node into the binary search tree
-    insert(val, currentNode=this.root) {
+    insert(val, currentNode = this.root) {
         const newNode = new TreeNode(val);
         if (!currentNode) {
             this.root = newNode;
@@ -39,7 +39,7 @@ class BST {
         }
     }
 
-// ALTERNATIVE SOLUTION THAT WORKS TOO, BUT USES RECURISON INSTEAD OF ITERATION
+    // ALTERNATIVE SOLUTION THAT WORKS TOO, BUT USES RECURISON INSTEAD OF ITERATION
     // insert(val, currentNode=this.root) {
     //     if (!currentNode) {
     //         this.root = new TreeNode(val);
@@ -62,13 +62,45 @@ class BST {
     // }
 
     // Perform a recursive search through the binary search tree
-    searchRecur(val, currentNode=this.root) {
-        // Your code here
+    searchRecur(val, currentNode = this.root) {
+        if (!currentNode) return false;
+        if (currentNode.val === val) return true;
+
+        if (val < currentNode.val) {
+            if (currentNode.left) {
+                return this.searchRecur(val, currentNode.left)
+            } else {
+                return false;
+            }
+        } else {
+            if (currentNode.right) {
+                return this.searchRecur(val, currentNode.right)
+            } else {
+                return false;
+            }
+        }
     }
 
     // Perform an iterative search through the binary search tree
-    searchIter(val) {
-        // Your code here
+    searchIter(val, currentNode = this.root) {
+        if (!currentNode) return false;
+        while (currentNode) {
+            if (val < currentNode.val) {
+                if(currentNode.left){
+                    currentNode = currentNode.left;
+                } else {
+                    return false;
+                }
+            } else if (val > currentNode.val) {
+                if(currentNode.right){
+                    currentNode = currentNode.right;
+                } else {
+                    return false;
+                }
+            } else {
+                return true;
+            }
+        }
     }
 }
 
