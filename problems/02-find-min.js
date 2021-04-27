@@ -3,7 +3,14 @@
 // binary search tree and returns the minimum value.
 // You may use your BST implementation to test this out.
 function findMin(root) {
-    // Your code here
+  // go as left as possible
+  if (!root) return null;
+  let current = root;
+
+  while (current.left) {
+    current = current.left;
+  }
+  return current;
 }
 
 
